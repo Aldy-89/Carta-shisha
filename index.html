@@ -18,159 +18,145 @@
         }
     </script>
     <style>
-        html, body { background-color: #0a0a0a !important; margin: 0; height: 100%; width: 100%; color: #b8b4b1; overflow-x: hidden; }
-        .page-container { position: absolute; top: 0; left: 0; width: 100%; min-height: 100%; display: none; opacity: 0; transition: opacity 0.3s ease; overflow-y: auto; padding-bottom: 60px; }
+        html, body { background-color: #0a0a0a !important; margin: 0; padding: 0; height: 100%; width: 100%; color: #b8b4b1; overflow-x: hidden; }
+        .page-container { position: absolute; top: 0; left: 0; width: 100%; min-height: 100%; display: none; opacity: 0; transition: opacity 0.3s ease; overflow-y: auto; padding-bottom: 80px; }
         .page-active { display: flex; opacity: 1; }
         
-        .circle-main {
-            width: 220px; height: 220px; border-radius: 50%;
-            border: 2px solid rgba(198, 155, 60, 0.3); background: rgba(255, 255, 255, 0.02);
-            display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;
+        /* Botones Circulares IDÉNTICOS */
+        .circle-btn {
+            width: 150px; height: 150px; border-radius: 50% !important;
+            border: 1px solid rgba(198, 155, 60, 0.3); background: rgba(255, 255, 255, 0.03);
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            cursor: pointer; text-align: center; aspect-ratio: 1 / 1;
         }
-
-        .circle-nav {
-            width: 140px; height: 140px; border-radius: 50%;
-            border: 1px solid rgba(198, 155, 60, 0.2); background: rgba(255, 255, 255, 0.03);
-            display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;
-            aspect-ratio: 1 / 1;
-        }
+        .circle-large { width: 200px; height: 200px; }
 
         .card-shisha { 
             background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(198, 155, 60, 0.1); 
-            border-left: 4px solid #c69b3c; width: 100%; padding: 1.2rem; text-align: center; margin-bottom: 10px;
+            border-left: 4px solid #c69b3c; width: 100%; padding: 1.2rem; text-align: center; margin-bottom: 12px;
         }
 
-        .leaf-tag { font-size: 8px; letter-spacing: 2px; padding: 2px 8px; border: 1px solid rgba(198, 155, 60, 0.4); margin-bottom: 8px; color: #c69b3c; text-transform: uppercase; font-weight: bold;}
-        .brand-tag { font-size: 9px; letter-spacing: 1px; color: #c69b3c; opacity: 0.8; text-transform: uppercase; margin-top: 4px; display: block; }
-        .mix-badge { background: #c69b3c; color: #0a0a0a; padding: 2px 8px; font-size: 9px; font-weight: bold; text-transform: uppercase; border-radius: 2px; margin-bottom: 8px; display: inline-block; }
+        .back-btn { position: fixed; top: 20px; left: 20px; z-index: 999; color: #c69b3c; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; background: #0a0a0a; padding: 8px 12px; border: 1px solid rgba(198,155,60,0.3); border-radius: 4px; }
         
-        .flavor-grid { display: flex; flex-direction: column; width: 100%; max-width: 600px; padding: 0 20px; }
-
-        .back-btn { position: fixed; top: 20px; left: 20px; z-index: 100; color: #c69b3c; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; background: rgba(10,10,10,0.9); padding: 5px 10px; border: 1px solid rgba(198,155,60,0.2); }
+        .flavor-grid { display: flex; flex-direction: column; width: 100%; max-width: 500px; padding: 0 20px; margin-top: 20px; }
+        .mix-badge { background: #c69b3c; color: #0a0a0a; padding: 2px 8px; font-size: 9px; font-weight: bold; text-transform: uppercase; border-radius: 2px; margin-bottom: 5px; display: inline-block; }
     </style>
 </head>
-<body class="font-lora">
+<body>
 
     <div id="start-screen" class="page-container page-active flex-col justify-center items-center px-6 text-center">
-        <header class="mb-12 mt-10">
+        <header class="mb-12">
             <h1 class="font-playfair italic text-6xl text-gold mb-2">Onyx & Ember</h1>
             <p class="uppercase tracking-[0.4em] text-gold text-[10px] opacity-60">Private Shisha Club</p>
         </header>
-        <nav class="flex flex-col gap-10">
-            <div onclick="navigateTo('cocktail-wip')" class="circle-main">
-                <i class="fas fa-glass-martini-alt text-gold text-4xl mb-3"></i>
-                <span class="font-playfair uppercase tracking-widest text-sm text-gold">Mixology Bar</span>
+        <div class="flex flex-col gap-8">
+            <div onclick="navigateTo('cocktail-wip')" class="circle-btn circle-large">
+                <i class="fas fa-glass-martini-alt text-gold text-3xl mb-2"></i>
+                <span class="font-playfair uppercase tracking-widest text-[10px] text-gold">Mixology Bar</span>
             </div>
-            <div onclick="navigateTo('shisha-choice')" class="circle-main">
-                <i class="fas fa-wind text-gold text-4xl mb-3"></i>
-                <span class="font-playfair uppercase tracking-widest text-sm text-gold">Shisha Lounge</span>
-            </div>
-        </nav>
-    </div>
-
-    <div id="shisha-choice" class="page-container flex-col justify-center items-center px-6">
-        <button onclick="navigateTo('start-screen')" class="back-btn">← Inicio</button>
-        <h2 class="font-playfair text-4xl text-gold italic mb-12 uppercase tracking-widest text-center">The Smoke Room</h2>
-        <div class="flex flex-col gap-10">
-            <div onclick="navigateTo('shisha-menu')" class="circle-main border-dashed">
-                <i class="fa-solid fa-list-ul text-gold text-3xl mb-2"></i>
-                <span class="font-playfair uppercase tracking-widest text-[11px] text-gold">Flavor Library</span>
-            </div>
-            <div onclick="navigateTo('setup-wip')" class="circle-main border-dashed">
-                <i class="fa-solid fa-flask text-gold text-3xl mb-2"></i>
-                <span class="font-playfair uppercase tracking-widest text-[11px] text-gold">Base infusion</span>
+            <div onclick="navigateTo('shisha-choice')" class="circle-btn circle-large">
+                <i class="fas fa-wind text-gold text-3xl mb-2"></i>
+                <span class="font-playfair uppercase tracking-widest text-[10px] text-gold">Shisha Lounge</span>
             </div>
         </div>
     </div>
 
-    <div id="shisha-menu" class="page-container flex-col justify-center items-center px-6">
+    <div id="shisha-choice" class="page-container flex-col justify-center items-center px-6">
+        <button onclick="navigateTo('start-screen')" class="back-btn">← Inicio</button>
+        <h2 class="font-playfair text-4xl text-gold italic mb-12 uppercase tracking-widest">The Room</h2>
+        <div class="flex flex-col gap-8">
+            <div onclick="navigateTo('shisha-menu')" class="circle-btn circle-large border-dashed">
+                <i class="fa-solid fa-list-ul text-gold text-3xl mb-2"></i>
+                <span class="font-playfair uppercase tracking-widest text-[10px] text-gold">Flavor Library</span>
+            </div>
+            <div onclick="navigateTo('setup-wip')" class="circle-btn circle-large border-dashed">
+                <i class="fa-solid fa-flask text-gold text-3xl mb-2"></i>
+                <span class="font-playfair uppercase tracking-widest text-[10px] text-gold">Base infusion</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="shisha-menu" class="page-container flex-col items-center px-6 pt-24">
         <button onclick="navigateTo('shisha-choice')" class="back-btn">← Atrás</button>
-        <h2 class="font-playfair text-4xl text-gold italic mb-10 mt-20 uppercase tracking-widest text-center">Categories</h2>
-        <div class="flex flex-wrap justify-center gap-6 max-w-sm">
-            <div onclick="navigateTo('gourmet')" class="circle-nav"><i class="fa-solid fa-cookie-bite text-gold text-2xl mb-2"></i><span class="font-playfair text-[10px] uppercase">Gourmet</span></div>
-            <div onclick="navigateTo('fresh')" class="circle-nav"><i class="fa-solid fa-snowflake text-gold text-2xl mb-2"></i><span class="font-playfair text-[10px] uppercase">Fresh</span></div>
-            <div onclick="navigateTo('candy')" class="circle-nav"><i class="fa-solid fa-candy-cane text-gold text-2xl mb-2"></i><span class="font-playfair text-[10px] uppercase">Candy</span></div>
-            <div onclick="navigateTo('botanical')" class="circle-nav"><i class="fa-solid fa-leaf text-gold text-2xl mb-2"></i><span class="font-playfair text-[10px] uppercase">Botanical</span></div>
-            <div onclick="navigateTo('mixology')" class="circle-nav border-gold"><i class="fa-solid fa-vial text-gold text-2xl mb-2"></i><span class="font-playfair text-[10px] font-bold uppercase">House Blends</span></div>
+        <h2 class="font-playfair text-4xl text-gold italic mb-10 uppercase tracking-widest">Categories</h2>
+        <div class="grid grid-cols-2 gap-4">
+            <div onclick="navigateTo('gourmet')" class="circle-btn"><i class="fa-solid fa-cookie-bite text-gold text-xl mb-1"></i><span class="text-[9px] uppercase">Gourmet</span></div>
+            <div onclick="navigateTo('fresh')" class="circle-btn"><i class="fa-solid fa-snowflake text-gold text-xl mb-1"></i><span class="text-[9px] uppercase">Fresh</span></div>
+            <div onclick="navigateTo('candy')" class="circle-btn"><i class="fa-solid fa-candy-cane text-gold text-xl mb-1"></i><span class="text-[9px] uppercase">Candy</span></div>
+            <div onclick="navigateTo('botanical')" class="circle-btn"><i class="fa-solid fa-leaf text-gold text-xl mb-1"></i><span class="text-[9px] uppercase">Botanical</span></div>
+        </div>
+        <div onclick="navigateTo('mixology')" class="circle-btn mt-6 border-gold border-2">
+            <i class="fa-solid fa-vial text-gold text-xl mb-1"></i>
+            <span class="text-[9px] font-bold uppercase">House Blends</span>
         </div>
     </div>
 
     <div id="gourmet" class="page-container flex-col items-center pt-24">
         <button onclick="navigateTo('shisha-menu')" class="back-btn">← Volver</button>
-        <h2 class="font-playfair text-4xl text-gold mb-8 italic">Gourmet</h2>
+        <h2 class="font-playfair text-3xl text-gold mb-6 italic">Gourmet</h2>
         <div class="flavor-grid">
-            <div class="card-shisha"><span class="leaf-tag">RUBIO</span><h3 class="text-xl font-bold">White Alman</h3><span class="brand-tag">Hookain</span><p class="text-xs italic opacity-50">Cheesecake de limón siciliano.</p></div>
-            <div class="card-shisha"><span class="leaf-tag">RUBIO</span><h3 class="text-xl font-bold">Tuxedo</h3><span class="brand-tag">Taboo</span><p class="text-xs italic opacity-50">Galleta Lotus caramelizada.</p></div>
-            <div class="card-shisha"><span class="leaf-tag">RUBIO</span><h3 class="text-xl font-bold">Temptation</h3><span class="brand-tag">Anda</span><p class="text-xs italic opacity-50">Chocolate blanco y frambuesa.</p></div>
-            <div class="card-shisha"><span class="leaf-tag">RUBIO</span><h3 class="text-xl font-bold">Tiramisú</h3><span class="brand-tag">Dozaj</span><p class="text-xs italic opacity-50">Café espresso y mascarpone.</p></div>
-            <div class="card-shisha"><span class="leaf-tag">RUBIO</span><h3 class="text-xl font-bold">Lambada</h3><span class="brand-tag">Dozaj</span><p class="text-xs italic opacity-50">Dulce de leche cremoso.</p></div>
+            <div class="card-shisha"><h3 class="text-lg font-bold">White Alman</h3><p class="text-[10px] opacity-50 italic">Cheesecake de limón siciliano.</p></div>
+            <div class="card-shisha"><h3 class="text-lg font-bold">Tuxedo</h3><p class="text-[10px] opacity-50 italic">Galleta Lotus caramelizada.</p></div>
+            <div class="card-shisha"><h3 class="text-lg font-bold">Temptation</h3><p class="text-[10px] opacity-50 italic">Chocolate blanco y frambuesa.</p></div>
+            <div class="card-shisha"><h3 class="text-lg font-bold">Tiramisú</h3><p class="text-[10px] opacity-50 italic">Café espresso y mascarpone.</p></div>
+            <div class="card-shisha"><h3 class="text-lg font-bold">Lambada</h3><p class="text-[10px] opacity-50 italic">Dulce de leche cremoso.</p></div>
         </div>
     </div>
 
     <div id="fresh" class="page-container flex-col items-center pt-24">
         <button onclick="navigateTo('shisha-menu')" class="back-btn">← Volver</button>
-        <h2 class="font-playfair text-4xl text-gold mb-8 italic">Fresh</h2>
+        <h2 class="font-playfair text-3xl text-gold mb-6 italic">Fresh</h2>
         <div class="flavor-grid">
-            <div class="card-shisha"><span class="leaf-tag">RUBIO</span><h3 class="text-xl font-bold">Eskimo P'App</h3><span class="brand-tag">Revoshi</span><p class="text-xs italic opacity-50">Manzana verde ácida y helada.</p></div>
-            <div class="card-shisha"><span class="leaf-tag">RUBIO</span><h3 class="text-xl font-bold">Clipporiz</h3><span class="brand-tag">Anda</span><p class="text-xs italic opacity-50">Limón cítrico refrescante.</p></div>
-            <div class="card-shisha"><span class="leaf-tag">RUBIO</span><h3 class="text-xl font-bold">Big Boy</h3><span class="brand-tag">Al Waha</span><p class="text-xs italic opacity-50">Sandía fresca y mentolada.</p></div>
-            <div class="card-shisha"><span class="leaf-tag">RUBIO</span><h3 class="text-xl font-bold">Huracán</h3><span class="brand-tag">Dozaj</span><p class="text-xs italic opacity-50">Cítricos con frío extremo.</p></div>
+            <div class="card-shisha"><h3 class="text-lg font-bold">Eskimo P'App</h3><p class="text-[10px] opacity-50 italic">Manzana verde helada.</p></div>
+            <div class="card-shisha"><h3 class="text-lg font-bold">Clipporiz</h3><p class="text-[10px] opacity-50 italic">Limón cítrico.</p></div>
+            <div class="card-shisha"><h3 class="text-lg font-bold">Big Boy</h3><p class="text-[10px] opacity-50 italic">Sandía mentolada.</p></div>
         </div>
     </div>
 
     <div id="candy" class="page-container flex-col items-center pt-24">
         <button onclick="navigateTo('shisha-menu')" class="back-btn">← Volver</button>
-        <h2 class="font-playfair text-4xl text-gold mb-8 italic">Candy</h2>
+        <h2 class="font-playfair text-3xl text-gold mb-6 italic">Candy</h2>
         <div class="flavor-grid">
-            <div class="card-shisha"><span class="leaf-tag">RUBIO</span><h3 class="text-xl font-bold">Bubblenciaga</h3><span class="brand-tag">Hookain</span><p class="text-xs italic opacity-50">Chicle de fresa intenso.</p></div>
-            <div class="card-shisha"><span class="leaf-tag">RUBIO</span><h3 class="text-xl font-bold">Chari Zkittlez</h3><span class="brand-tag">Hookain</span><p class="text-xs italic opacity-50">Caramelos de cereza ácida.</p></div>
+            <div class="card-shisha"><h3 class="text-lg font-bold">Bubblenciaga</h3><p class="text-[10px] opacity-50 italic">Chicle de fresa.</p></div>
+            <div class="card-shisha"><h3 class="text-lg font-bold">Chari Zkittlez</h3><p class="text-[10px] opacity-50 italic">Caramelos de cereza.</p></div>
         </div>
     </div>
 
     <div id="botanical" class="page-container flex-col items-center pt-24">
         <button onclick="navigateTo('shisha-menu')" class="back-btn">← Volver</button>
-        <h2 class="font-playfair text-4xl text-gold mb-8 italic">Botanical</h2>
+        <h2 class="font-playfair text-3xl text-gold mb-6 italic">Botanical</h2>
         <div class="flavor-grid">
-            <div class="card-shisha"><span class="leaf-tag">RUBIO</span><h3 class="text-xl font-bold">Magic Love</h3><span class="brand-tag">Al Fakher</span><p class="text-xs italic opacity-50">Melón, maracuyá y toques herbales.</p></div>
-            <div class="card-shisha"><span class="leaf-tag" style="color:white">NEGRO</span><h3 class="text-xl font-bold">Vampiro</h3><span class="brand-tag">Dozaj</span><p class="text-xs italic opacity-50">Frutos rojos y regaliz.</p></div>
-            <div class="card-shisha"><span class="leaf-tag">RUBIO</span><h3 class="text-xl font-bold">Trópido</h3><span class="brand-tag">Anda</span><p class="text-xs italic opacity-50">Pura fruta de la pasión.</p></div>
+            <div class="card-shisha"><h3 class="text-lg font-bold">Magic Love</h3><p class="text-[10px] opacity-50 italic">Melón y maracuyá.</p></div>
+            <div class="card-shisha"><h3 class="text-lg font-bold">Vampiro</h3><p class="text-[10px] opacity-50 italic">Frutos rojos y regaliz.</p></div>
+            <div class="card-shisha"><h3 class="text-lg font-bold">Trópido</h3><p class="text-[10px] opacity-50 italic">Fruta de la pasión.</p></div>
         </div>
     </div>
 
     <div id="mixology" class="page-container flex-col items-center pt-24">
         <button onclick="navigateTo('shisha-menu')" class="back-btn">← Volver</button>
-        <h2 class="font-playfair text-4xl text-gold mb-8 italic">House Blends</h2>
+        <h2 class="font-playfair text-3xl text-gold mb-6 italic">House Blends</h2>
         <div class="flavor-grid">
-            <div class="card-shisha"><span class="mix-badge">60% Alman + 40% Tuxedo</span><h3 class="text-lg font-bold">Lotus Cake</h3></div>
-            <div class="card-shisha"><span class="mix-badge">70% Eskimo + 30% Clipporiz</span><h3 class="text-lg font-bold">Arctic Apple</h3></div>
-            <div class="card-shisha"><span class="mix-badge">50% Vampiro + 50% Bubble</span><h3 class="text-lg font-bold">Vampire Candy</h3></div>
-            <div class="card-shisha"><span class="mix-badge">60% Tiramisú + 40% Lambada</span><h3 class="text-lg font-bold">Coffee Milk</h3></div>
-            <div class="card-shisha"><span class="mix-badge">50% Big Boy + 50% Trópido</span><h3 class="text-lg font-bold">Tropical Sandía</h3></div>
-            <div class="card-shisha"><span class="mix-badge">60% Huracán + 40% Eskimo</span><h3 class="text-lg font-bold">Frozen Storm</h3></div>
-            <div class="card-shisha"><span class="mix-badge">50% Temptation + 50% Alman</span><h3 class="text-lg font-bold">Velvet Dream</h3></div>
-            <div class="card-shisha"><span class="mix-badge">40% Magic Love + 60% Clipporiz</span><h3 class="text-lg font-bold">Botanical Lemon</h3></div>
+            <div class="card-shisha"><span class="mix-badge">Mezcla Onyx</span><h3 class="text-lg font-bold">Lotus Cake</h3></div>
+            <div class="card-shisha"><span class="mix-badge">Mezcla Ember</span><h3 class="text-lg font-bold">Arctic Apple</h3></div>
+            <div class="card-shisha"><span class="mix-badge">Mezcla Special</span><h3 class="text-lg font-bold">Vampire Candy</h3></div>
         </div>
     </div>
 
     <div id="setup-wip" class="page-container flex-col items-center pt-24">
         <button onclick="navigateTo('shisha-choice')" class="back-btn">← Volver</button>
-        <h2 class="font-playfair text-4xl text-gold mb-8 italic">Base Infusions</h2>
+        <h2 class="font-playfair text-3xl text-gold mb-6 italic">Bases</h2>
         <div class="flavor-grid">
-            <div class="card-shisha"><span class="mix-badge">Universal</span><h3 class="text-lg font-bold">Only Ice</h3><p class="text-xs opacity-60">Agua helada pura.</p></div>
-            <div class="card-shisha"><span class="mix-badge">Cremosos</span><h3 class="text-lg font-bold">Milky Cloud</h3><p class="text-xs opacity-60">Agua y leche fría.</p></div>
-            <div class="card-shisha"><span class="mix-badge">Cítricos</span><h3 class="text-lg font-bold">Citric Ice</h3><p class="text-xs opacity-60">Hielo y rodajas de limón.</p></div>
-            <div class="card-shisha"><span class="mix-badge">Dulces</span><h3 class="text-lg font-bold">Fruit Infusion</h3><p class="text-xs opacity-60">Agua y frutos rojos.</p></div>
-            <div class="card-shisha"><span class="mix-badge">Botanical</span><h3 class="text-lg font-bold">Seagram's</h3><p class="text-xs opacity-60">Toque de Ginebra.</p></div>
-            <div class="card-shisha"><span class="mix-badge">Intenso</span><h3 class="text-lg font-bold">Absolut</h3><p class="text-xs opacity-60">Toque de Vodka.</p></div>
-            <div class="card-shisha"><span class="mix-badge">Candy</span><h3 class="text-lg font-bold">Coca-Cola</h3><p class="text-xs opacity-60">Base de refresco de cola.</p></div>
-            <div class="card-shisha"><span class="mix-badge">Tropical</span><h3 class="text-lg font-bold">Fanta Naranja</h3><p class="text-xs opacity-60">Base gaseosa de naranja.</p></div>
+            <div class="card-shisha"><h3 class="text-lg font-bold">Only Ice</h3></div>
+            <div class="card-shisha"><h3 class="text-lg font-bold">Milky Cloud</h3></div>
+            <div class="card-shisha"><h3 class="text-lg font-bold">Seagram's / Absolut</h3></div>
+            <div class="card-shisha"><h3 class="text-lg font-bold">Coca-Cola / Fanta</h3></div>
         </div>
     </div>
 
     <div id="cocktail-wip" class="page-container flex-col justify-center items-center text-center px-6">
-        <h2 class="font-playfair text-4xl text-gold mb-6 italic">Mixology Bar</h2>
-        <p class="text-ash text-sm mb-10">Próximamente: Cócteles de autor diseñados para maridar con tu Shisha.</p>
-        <button onclick="navigateTo('start-screen')" class="border border-gold text-gold px-8 py-2 uppercase text-[10px] tracking-widest">Volver</button>
+        <h2 class="font-playfair text-4xl text-gold mb-4 italic">Bar</h2>
+        <p class="text-sm mb-8">Próximamente...</p>
+        <button onclick="navigateTo('start-screen')" class="border border-gold text-gold px-8 py-2 uppercase text-[10px]">Volver</button>
     </div>
 
     <script>
